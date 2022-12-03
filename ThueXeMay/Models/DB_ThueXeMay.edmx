@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RENT_MOTORModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bike">
+          <Key>
+            <PropertyRef Name="id_bike" />
+          </Key>
+          <Property Name="id_bike" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="number" Type="nchar" MaxLength="25" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="id_type" Type="int" />
+          <Property Name="IsHot" Type="bit" />
+        </EntityType>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id_bill" />
+          </Key>
+          <Property Name="id_bill" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_customer" Type="nchar" MaxLength="10" />
+          <Property Name="id_service" Type="nchar" MaxLength="10" />
+          <Property Name="date_use" Type="int" />
+          <Property Name="hour_use" Type="int" />
+          <Property Name="money" Type="int" />
+          <Property Name="date_start" Type="date" />
+          <Property Name="date_end" Type="date" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+          <Property Name="head" Type="nvarchar" MaxLength="200" />
+          <Property Name="content" Type="nvarchar" MaxLength="2000" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="stt" />
+          </Key>
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="facebook_link" Type="nvarchar" MaxLength="50" />
+          <Property Name="stt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_customer" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_card" Type="nchar" MaxLength="30" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="int" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="account" Type="nchar" MaxLength="50" />
+          <Property Name="pass" Type="nchar" MaxLength="50" />
+          <Property Name="task" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mail">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="price">
+          <Key>
+            <PropertyRef Name="id_service" />
+          </Key>
+          <Property Name="id_service" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="service" Type="nvarchar" MaxLength="50" />
+          <Property Name="motor" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+        </EntityType>
+        <EntityType Name="rate">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="job" Type="nvarchar" MaxLength="50" />
+          <Property Name="content" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="rent">
+          <Key>
+            <PropertyRef Name="id_rent" />
+          </Key>
+          <Property Name="id_rent" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_bike" Type="char" MaxLength="10" />
+          <Property Name="id_customer" Type="nchar" MaxLength="10" />
+          <Property Name="id_service" Type="nchar" MaxLength="10" />
+          <Property Name="id_employee" Type="nchar" MaxLength="10" />
+          <Property Name="date_start" Type="nchar" MaxLength="20" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="id_type" />
+          </Key>
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price_hour" Type="int" />
+          <Property Name="price_day" Type="int" />
+          <Property Name="price_month" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_type" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_bike_type">
+          <End Role="type" Type="Self.type" Multiplicity="0..1" />
+          <End Role="bike" Type="Self.bike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="id_type" />
+            </Principal>
+            <Dependent Role="bike">
+              <PropertyRef Name="id_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bill_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bill_price">
+          <End Role="price" Type="Self.price" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="price">
+              <PropertyRef Name="id_service" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rent_bike">
+          <End Role="bike" Type="Self.bike" Multiplicity="0..1" />
+          <End Role="rent" Type="Self.rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bike">
+              <PropertyRef Name="id_bike" />
+            </Principal>
+            <Dependent Role="rent">
+              <PropertyRef Name="id_bike" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rent_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="rent" Type="Self.rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="rent">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RENT_MOTORModelStoreContainer">
+          <EntitySet Name="bike" EntityType="Self.bike" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blog" EntityType="Self.blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mail" EntityType="Self.mail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="price" EntityType="Self.price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rate" EntityType="Self.rate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rent" EntityType="Self.rent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_bike_type" Association="Self.FK_bike_type">
+            <End Role="type" EntitySet="type" />
+            <End Role="bike" EntitySet="bike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bill_customer" Association="Self.FK_bill_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bill_price" Association="Self.FK_bill_price">
+            <End Role="price" EntitySet="price" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rent_bike" Association="Self.FK_rent_bike">
+            <End Role="bike" EntitySet="bike" />
+            <End Role="rent" EntitySet="rent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rent_customer" Association="Self.FK_rent_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="rent" EntitySet="rent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RENT_MOTORModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bike">
+          <Key>
+            <PropertyRef Name="id_bike" />
+          </Key>
+          <Property Name="id_bike" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="number" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="id_type" Type="Int32" />
+          <NavigationProperty Name="types" Relationship="Self.FK_bike_type" FromRole="bike" ToRole="type" />
+          <NavigationProperty Name="rents" Relationship="Self.FK_rent_bike" FromRole="bike" ToRole="rent" />
+          <Property Name="IsHot" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id_bill" />
+          </Key>
+          <Property Name="id_bill" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_customer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_service" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="date_use" Type="Int32" />
+          <Property Name="hour_use" Type="Int32" />
+          <Property Name="money" Type="Int32" />
+          <Property Name="date_start" Type="DateTime" Precision="0" />
+          <Property Name="date_end" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_bill_customer" FromRole="bill" ToRole="customer" />
+          <NavigationProperty Name="price" Relationship="Self.FK_bill_price" FromRole="bill" ToRole="price" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="stt" />
+          </Key>
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="facebook_link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stt" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_card" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="Int32" />
+          <NavigationProperty Name="bills" Relationship="Self.FK_bill_customer" FromRole="customer" ToRole="bill" />
+          <NavigationProperty Name="rents" Relationship="Self.FK_rent_customer" FromRole="customer" ToRole="rent" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="account" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="task" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="mail">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="price">
+          <Key>
+            <PropertyRef Name="id_service" />
+          </Key>
+          <Property Name="id_service" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="service" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="motor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price1" Type="Int32" />
+          <NavigationProperty Name="bills" Relationship="Self.FK_bill_price" FromRole="price" ToRole="bill" />
+        </EntityType>
+        <EntityType Name="rate">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="job" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="rent">
+          <Key>
+            <PropertyRef Name="id_rent" />
+          </Key>
+          <Property Name="id_rent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_bike" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="id_customer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_service" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_employee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="date_start" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bike" Relationship="Self.FK_rent_bike" FromRole="rent" ToRole="bike" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_rent_customer" FromRole="rent" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="id_type" />
+          </Key>
+          <Property Name="type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price_hour" Type="Int32" />
+          <Property Name="price_day" Type="Int32" />
+          <Property Name="price_month" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bikes" Relationship="Self.FK_bike_type" FromRole="type" ToRole="bike" />
+        </EntityType>
+        <Association Name="FK_bike_type">
+          <End Role="type" Type="Self.type" Multiplicity="0..1" />
+          <End Role="bike" Type="Self.bike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="id_type" />
+            </Principal>
+            <Dependent Role="bike">
+              <PropertyRef Name="id_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rent_bike">
+          <End Role="bike" Type="Self.bike" Multiplicity="0..1" />
+          <End Role="rent" Type="Self.rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bike">
+              <PropertyRef Name="id_bike" />
+            </Principal>
+            <Dependent Role="rent">
+              <PropertyRef Name="id_bike" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bill_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bill_price">
+          <End Role="price" Type="Self.price" Multiplicity="0..1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="price">
+              <PropertyRef Name="id_service" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rent_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="rent" Type="Self.rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="rent">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RENT_MOTOREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bikes" EntityType="Self.bike" />
+          <EntitySet Name="bills" EntityType="Self.bill" />
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="mails" EntityType="Self.mail" />
+          <EntitySet Name="prices" EntityType="Self.price" />
+          <EntitySet Name="rates" EntityType="Self.rate" />
+          <EntitySet Name="rents" EntityType="Self.rent" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="types" EntityType="Self.type" />
+          <AssociationSet Name="FK_bike_type" Association="Self.FK_bike_type">
+            <End Role="type" EntitySet="types" />
+            <End Role="bike" EntitySet="bikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rent_bike" Association="Self.FK_rent_bike">
+            <End Role="bike" EntitySet="bikes" />
+            <End Role="rent" EntitySet="rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bill_customer" Association="Self.FK_bill_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bill_price" Association="Self.FK_bill_price">
+            <End Role="price" EntitySet="prices" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rent_customer" Association="Self.FK_rent_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="rent" EntitySet="rents" />
+          </AssociationSet>
+          <EntitySet Name="blogs" EntityType="RENT_MOTORModel.blog" />
+        </EntityContainer>
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="head" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RENT_MOTORModelStoreContainer" CdmEntityContainer="RENT_MOTOREntities">
+          <EntitySetMapping Name="bikes">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.bike">
+              <MappingFragment StoreEntitySet="bike">
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="id_bike" ColumnName="id_bike" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="id_type" ColumnName="id_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bills">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.bill">
+              <MappingFragment StoreEntitySet="bill">
+                <ScalarProperty Name="id_bill" ColumnName="id_bill" />
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="id_service" ColumnName="id_service" />
+                <ScalarProperty Name="date_use" ColumnName="date_use" />
+                <ScalarProperty Name="hour_use" ColumnName="hour_use" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="date_end" ColumnName="date_end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="facebook_link" ColumnName="facebook_link" />
+                <ScalarProperty Name="stt" ColumnName="stt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="name_customer" ColumnName="name_customer" />
+                <ScalarProperty Name="id_card" ColumnName="id_card" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="task" ColumnName="task" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mails">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.mail">
+              <MappingFragment StoreEntitySet="mail">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prices">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.price">
+              <MappingFragment StoreEntitySet="price">
+                <ScalarProperty Name="id_service" ColumnName="id_service" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="motor" ColumnName="motor" />
+                <ScalarProperty Name="price1" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rates">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.rate">
+              <MappingFragment StoreEntitySet="rate">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="job" ColumnName="job" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rents">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.rent">
+              <MappingFragment StoreEntitySet="rent">
+                <ScalarProperty Name="id_rent" ColumnName="id_rent" />
+                <ScalarProperty Name="id_bike" ColumnName="id_bike" />
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="id_service" ColumnName="id_service" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="date_start" ColumnName="date_start" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="types">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.type">
+              <MappingFragment StoreEntitySet="type">
+                <ScalarProperty Name="type1" ColumnName="type" />
+                <ScalarProperty Name="price_hour" ColumnName="price_hour" />
+                <ScalarProperty Name="price_day" ColumnName="price_day" />
+                <ScalarProperty Name="price_month" ColumnName="price_month" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id_type" ColumnName="id_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogs">
+            <EntityTypeMapping TypeName="RENT_MOTORModel.blog">
+              <MappingFragment StoreEntitySet="blog">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="head" ColumnName="head" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
