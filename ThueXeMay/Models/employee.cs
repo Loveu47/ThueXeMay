@@ -17,6 +17,6 @@ namespace ThueXeMay.Models
         public string id_employee { get; set; }
         public string account { get; set; }
         public string pass { get; set; }
-        public string task { get; set; }
+        public string name { get; set; }
     }
 }

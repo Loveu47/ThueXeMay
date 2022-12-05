@@ -27,6 +27,7 @@ namespace ThueXeMay.Models
     
         public virtual DbSet<bike> bikes { get; set; }
         public virtual DbSet<bill> bills { get; set; }
+        public virtual DbSet<blog> blogs { get; set; }
         public virtual DbSet<contact> contacts { get; set; }
         public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<employee> employees { get; set; }
@@ -36,6 +37,5 @@ namespace ThueXeMay.Models
         public virtual DbSet<rent> rents { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<type> types { get; set; }
-        public virtual DbSet<blog> blogs { get; set; }
     }
 }

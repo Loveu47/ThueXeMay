@@ -15,9 +15,20 @@ namespace ThueXeMay.Areas.Admin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+                "AdminLogin",
+                "Admin/Login",
+                new { controller = "Auth", action = "Login", id = UrlParameter.Optional }
+            );
+            context.MapRoute(
+                "AdminLogout",
+                "Admin/Logout",
+                new { controller = "Auth", action = "Logout", id = UrlParameter.Optional }
+            );
+            context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "ThueXeMay.Areas.Admin.Controllers" }
             );
         }
     }

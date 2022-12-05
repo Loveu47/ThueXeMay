@@ -20,7 +20,7 @@ namespace ThueXeMay.Models
             this.rents = new HashSet<rent>();
         }
     
-        public string id_bike { get; set; }
+        public int id_bike { get; set; }
         public string number { get; set; }
         public string name { get; set; }
         public string image { get; set; }
@@ -29,8 +29,14 @@ namespace ThueXeMay.Models
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> id_type { get; set; }
         public Nullable<bool> IsHot { get; set; }
+        public string describe { get; set; }
+        public string mass { get; set; }
+        public string volumn { get; set; }
+        public string size { get; set; }
+        public string consume { get; set; }
+        public string status { get; set; }
     
-        public virtual type types { get; set; }
+        public virtual type type1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rent> rents { get; set; }
     }

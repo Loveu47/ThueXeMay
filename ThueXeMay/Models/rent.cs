@@ -15,7 +15,7 @@ namespace ThueXeMay.Models
     public partial class rent
     {
         public string id_rent { get; set; }
-        public string id_bike { get; set; }
+        public Nullable<int> id_bike { get; set; }
         public string id_customer { get; set; }
         public string id_service { get; set; }
         public string id_employee { get; set; }

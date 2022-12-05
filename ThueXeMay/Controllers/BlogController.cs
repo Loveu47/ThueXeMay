@@ -28,11 +28,11 @@ namespace ThueXeMay.Controllers
             pageSize));
         }
 
-        public ActionResult Blog_detail(int idbv=0)
+        public ActionResult Blog_detail(int? idbv)
         {
-            if (idbv == 0)
+            if (idbv == null)
             {
-                return View("Index");
+                return HttpNotFound();
             }
             else
             {

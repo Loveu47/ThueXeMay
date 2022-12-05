@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using ThueXeMay.Models;
 using System.Data.Entity;
+using System.Xml.Linq;
+using System.Net;
+
 namespace ThueXeMay.Controllers
 {
     public class CarsController : Controller
@@ -19,7 +22,7 @@ namespace ThueXeMay.Controllers
         {
             var typees = from i in myObj.types select i;
             ViewBag.Type = new SelectList(typees, "id_type", "type1");
-            var names = myObj.bikes.Include(j=>j.types);
+            var names = myObj.bikes.Include(j=>j.type1);
             if (!string.IsNullOrEmpty(Name))
             {
                 names = names.Where(i => i.name.Contains(Name));
@@ -34,6 +37,15 @@ namespace ThueXeMay.Controllers
         {
             var items = myObj.bikes.Where(i=> (bool)i.IsActive).Where(j=>(bool)j.IsHot).ToList();
             return PartialView("CarsList",items);
+        }
+        public ActionResult Details(int? idx)
+        {
+            if (idx == null) return HttpNotFound();
+            else
+            {
+                var items = myObj.bikes.Where(i => (bool)i.IsActive).Where(j => j.id_bike == idx).ToList();
+                return View("Detail", items);
+            }
         }
     }
 }
