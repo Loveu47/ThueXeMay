@@ -14,10 +14,10 @@ namespace ThueXeMay.Models
     
     public partial class contact
     {
+        public int id { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string facebook_link { get; set; }
-        public int stt { get; set; }
     }
 }

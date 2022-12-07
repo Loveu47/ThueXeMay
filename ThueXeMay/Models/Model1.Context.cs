@@ -29,10 +29,8 @@ namespace ThueXeMay.Models
         public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<blog> blogs { get; set; }
         public virtual DbSet<contact> contacts { get; set; }
-        public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<mail> mails { get; set; }
-        public virtual DbSet<price> prices { get; set; }
         public virtual DbSet<rate> rates { get; set; }
         public virtual DbSet<rent> rents { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

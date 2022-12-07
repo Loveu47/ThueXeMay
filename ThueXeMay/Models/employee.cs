@@ -14,9 +14,18 @@ namespace ThueXeMay.Models
     
     public partial class employee
     {
-        public string id_employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public employee()
+        {
+            this.rents = new HashSet<rent>();
+        }
+    
+        public int id_employee { get; set; }
         public string account { get; set; }
         public string pass { get; set; }
         public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rent> rents { get; set; }
     }
 }

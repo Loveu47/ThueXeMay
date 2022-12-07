@@ -14,6 +14,7 @@ namespace ThueXeMay.Models
     
     public partial class rate
     {
+        public int id { get; set; }
         public string name { get; set; }
         public string job { get; set; }
         public string content { get; set; }

@@ -14,17 +14,12 @@ namespace ThueXeMay.Models
     
     public partial class bill
     {
-        public string id_bill { get; set; }
-        public string id_customer { get; set; }
-        public string id_service { get; set; }
+        public int id_bill { get; set; }
         public Nullable<int> date_use { get; set; }
         public Nullable<int> hour_use { get; set; }
         public Nullable<int> money { get; set; }
         public Nullable<System.DateTime> date_start { get; set; }
         public Nullable<System.DateTime> date_end { get; set; }
         public string status { get; set; }
-    
-        public virtual customer customer { get; set; }
-        public virtual price price { get; set; }
     }
 }
