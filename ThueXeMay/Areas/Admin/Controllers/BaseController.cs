@@ -18,5 +18,22 @@ namespace ThueXeMay.Areas.Admin.Controllers
                 System.Web.HttpContext.Current.Response.Redirect("~/Admin/Login");
             }
         }
+
+        protected void ThongBao(string message, string type)
+        {
+            TempData["ThongBao"]=message;
+            if (type == "success")
+            {
+                TempData["Type"] = "alert-success";
+            }
+            else if(type == "warning")
+            {
+                TempData["Type"] = "alert-waring";
+            }
+            else if(type == "error")
+            {
+                TempData["Type"] = "alert-danger";
+            }
+        }
     }
 }

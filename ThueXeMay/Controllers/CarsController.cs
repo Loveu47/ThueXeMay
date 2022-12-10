@@ -22,7 +22,7 @@ namespace ThueXeMay.Controllers
         {
             var typees = from i in myObj.types select i;
             ViewBag.Type = new SelectList(typees, "id_type", "type1");
-            var names = myObj.bikes.Include(j=>j.type1);
+            var names = myObj.bikes.Include(j=>j.types);
             if (!string.IsNullOrEmpty(Name))
             {
                 names = names.Where(i => i.name.Contains(Name));
@@ -35,15 +35,16 @@ namespace ThueXeMay.Controllers
         }
         public ActionResult CarList_Home()
         {
-            var items = myObj.bikes.Where(i=> (bool)i.IsActive).Where(j=>(bool)j.IsHot).ToList();
-            return PartialView("CarsList",items);
+            var items = myObj.bikes.Include(j => j.types);
+            items = items.Where(i => (bool)i.IsActive).Where(j => (bool)j.IsHot);
+            return PartialView("CarsList",items.ToList());
         }
         public ActionResult Details(int? idx)
         {
             if (idx == null) return HttpNotFound();
             else
             {
-                var items = myObj.bikes.Where(i => (bool)i.IsActive).Where(j => j.id_bike == idx).ToList();
+                var items = myObj.bikes.Find(idx); 
                 return View("Detail", items);
             }
         }

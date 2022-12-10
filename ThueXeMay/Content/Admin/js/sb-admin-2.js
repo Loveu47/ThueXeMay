@@ -1,6 +1,11 @@
-(function($) {
-  "use strict"; // Start of use strict
+$(function () {
+    $('#thongbao').removeClass('hide');
+    $('#thongbao').delay(2000).slideUp(750);
+    
+});
 
+(function ($) {
+  "use strict"; // Start of use strict
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");

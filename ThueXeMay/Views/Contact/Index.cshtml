@@ -24,16 +24,16 @@
             <div class="col-md-8 block-9 mb-md-5">
                 <div class="bg-light p-5 contact-form">
                     <div class="form-group">
-                        <input id="input_name" type="text" class="form-control" placeholder="Họ tên"" required="required" data-error="Vui lòng nhập tên.">
+                        <input id="input_name" type="text" class="form-control" value="" placeholder="Họ tên"" required="required" data-error="Vui lòng nhập tên.">
                     </div>
                     <div class="form-group">
-                        <input id="input_email" type="email" name="email" class="form-control" placeholder="Email của bạn" required="required" data-error="Vui lòng nhập email.">
+                        <input id="input_email" type="email" name="email" class="form-control" value="" placeholder="Email của bạn" required="required" data-error="Vui lòng nhập email.">
                     </div>
                     <div class="form-group">
-                        <input id="input_phone" name="phone" type="text" class="form-control" placeholder="SĐT" required="required" data-error="Vui lòng nhập SĐT.">
+                        <input id="input_phone" name="phone" type="text" class="form-control" value="" placeholder="SĐT" required="required" data-error="Vui lòng nhập SĐT.">
                     </div>
                     <div class="form-group">
-                        <textarea name="massage" id="input_message" cols="30" rows="7" class="form-control" placeholder="Nội dung" required data-error="Vui lòng nhập nội dung."></textarea>
+                        <textarea name="massage" id="input_message" cols="30" rows="7" class="form-control" value="" placeholder="Nội dung" required data-error="Vui lòng nhập nội dung."></textarea>
                     </div>
                     <div class="form-group">
                         <button id="review_submit" type="submit" class="btn btn-primary py-3 px-5" value="Submit">Gửi</button>
@@ -57,25 +57,29 @@
     <script>
         $(document).ready(function () {
             $("#review_submit").click(function () {
-                _name = $("#input_name").val();
-                _phone = $("#input_phone").val();
-                _email = $("#input_email").val();
-                _message = $("#input_message").val();
-                $.ajax({
-                    type: "POST",
-                    url: "/contact/create",
-                    data: { name: _name, phone: _phone, email: _email, message: _message },
-                    cache: false,
-                    success: function (data) {
-                        if (data.status) {
-                            alert("Bạn đã gửi message thành công");
+                if ($("#input_name").val() != "" && $("#input_phone").val() != "" && $("#input_email").val() != "" && $("#input_message").val() != "") {
+                    _name = $("#input_name").val();
+                    _phone = $("#input_phone").val();
+                    _email = $("#input_email").val();
+                    _message = $("#input_message").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "/contact/create",
+                        data: { name: _name, phone: _phone, email: _email, message: _message },
+                        cache: false,
+                        success: function (data) {
+                            if (data.status) {
+                                alert("Bạn đã gửi thư thành công");
+                            }
+                            else {
+                                alert("Bạn đã gửi thư không thành công");
+                            }
                         }
-                        else {
-                            alert("Bạn đã gửi message không thành công");
-                        }
-                    }
-                });
-
+                    });
+                } else {
+                    alert("Vui lòng nhập đầy đủ thông tin!!");
+                }
+                
             })
 
         })

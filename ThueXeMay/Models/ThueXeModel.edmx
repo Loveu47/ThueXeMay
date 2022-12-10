@@ -4,16 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_ThueXeMay.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_ThueXeMay.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bike">
           <Key>
             <PropertyRef Name="id_bike" />
           </Key>
           <Property Name="id_bike" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="number" Type="nchar" MaxLength="25" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="image" Type="nvarchar" MaxLength="100" />
-          <Property Name="type" Type="nvarchar" MaxLength="50" />
           <Property Name="price" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="id_type" Type="int" />
@@ -45,8 +43,18 @@
           <Property Name="title" Type="nvarchar" MaxLength="100" />
           <Property Name="image" Type="nvarchar" MaxLength="100" />
           <Property Name="head" Type="nvarchar" MaxLength="200" />
-          <Property Name="content" Type="nvarchar" MaxLength="2000" />
+          <Property Name="content" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id_cmt" />
+          </Key>
+          <Property Name="id_cmt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="content" Type="nvarchar" MaxLength="500" />
           <Property Name="date" Type="date" />
         </EntityType>
         <EntityType Name="contact">
@@ -87,7 +95,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="job" Type="nvarchar" MaxLength="50" />
-          <Property Name="content" Type="text" />
+          <Property Name="content" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="image" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -134,6 +142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_comment_blog">
+          <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_rent_bike">
           <End Role="bike" Type="Self.bike" Multiplicity="0..1" />
           <End Role="rent" Type="Self.rent" Multiplicity="*" />
@@ -162,6 +182,7 @@
           <EntitySet Name="bike" EntityType="Self.bike" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="blog" EntityType="Self.blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mail" EntityType="Self.mail" Schema="dbo" store:Type="Tables" />
@@ -173,6 +194,10 @@
             <End Role="type" EntitySet="type" />
             <End Role="bike" EntitySet="bike" />
           </AssociationSet>
+          <AssociationSet Name="FK_comment_blog" Association="Self.FK_comment_blog">
+            <End Role="blog" EntitySet="blog" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
           <AssociationSet Name="fk_rent_bike" Association="Self.fk_rent_bike">
             <End Role="bike" EntitySet="bike" />
             <End Role="rent" EntitySet="rent" />
@@ -182,8 +207,7 @@
             <End Role="rent" EntitySet="rent" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_ThueXeMay" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -192,10 +216,8 @@
             <PropertyRef Name="id_bike" />
           </Key>
           <Property Name="id_bike" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="number" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="id_type" Type="Int32" />
@@ -206,7 +228,7 @@
           <Property Name="size" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="consume" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="type1" Relationship="Self.FK_bike_type" FromRole="bike" ToRole="type" />
+          <NavigationProperty Name="types" Relationship="Self.FK_bike_type" FromRole="bike" ToRole="type" />
           <NavigationProperty Name="rents" Relationship="Self.fk_rent_bike" FromRole="bike" ToRole="rent" />
         </EntityType>
         <EntityType Name="bill">
@@ -229,9 +251,10 @@
           <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="head" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="content" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="comments" Relationship="DB_ThueXeMay.FK_comment_blog" FromRole="blog" ToRole="comment" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -272,7 +295,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="job" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -369,7 +392,35 @@
             <End Role="employee" EntitySet="employees" />
             <End Role="rent" EntitySet="rents" />
           </AssociationSet>
+          <EntitySet Name="comments" EntityType="DB_ThueXeMay.comment" />
+          <AssociationSet Name="FK_comment_blog" Association="DB_ThueXeMay.FK_comment_blog">
+            <End Role="blog" EntitySet="blogs" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id_cmt" />
+          </Key>
+          <Property Name="id_cmt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="blog" Relationship="DB_ThueXeMay.FK_comment_blog" FromRole="comment" ToRole="blog" />
+        </EntityType>
+        <Association Name="FK_comment_blog">
+          <End Type="DB_ThueXeMay.blog" Role="blog" Multiplicity="0..1" />
+          <End Type="DB_ThueXeMay.comment" Role="comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -380,10 +431,8 @@
             <EntityTypeMapping TypeName="DB_ThueXeMay.bike">
               <MappingFragment StoreEntitySet="bike">
                 <ScalarProperty Name="id_bike" ColumnName="id_bike" />
-                <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="id_type" ColumnName="id_type" />
@@ -500,6 +549,17 @@
                 <ScalarProperty Name="price_day" ColumnName="price_day" />
                 <ScalarProperty Name="price_month" ColumnName="price_month" />
                 <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="DB_ThueXeMay.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cmt" ColumnName="id_cmt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

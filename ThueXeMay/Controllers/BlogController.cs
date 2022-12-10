@@ -13,11 +13,7 @@ namespace ThueXeMay.Controllers
     {
         // GET: Services
         RENT_MOTOREntities myObj = new RENT_MOTOREntities();
-        //public ActionResult Index()
-        //{
-        //    var items = myObj.blogs.Where(j => (bool)j.IsActive).ToList();
-        //    return View(items);
-        //}
+
         public ActionResult Index(int? pageNumber)
         {
             if (pageNumber == null) pageNumber = 1;
@@ -36,7 +32,7 @@ namespace ThueXeMay.Controllers
             }
             else
             {
-                var items = myObj.blogs.Where(i => (bool)i.IsActive).Where(j => j.id ==idbv).ToList();
+                var items = myObj.blogs.Find(idbv);
                 return View("Details", items);
             }
         }
@@ -45,5 +41,25 @@ namespace ThueXeMay.Controllers
             var items = myObj.blogs.Where(i => (bool)i.IsActive).Where(j=>j.id != id).ToList();
             return PartialView("Blog_other", items);
         }
+
+        public ActionResult Comment(int id)
+        {
+            var items = myObj.comments.Where(i => i.id == id).ToList();
+            ViewBag.count = items.Count();
+            return PartialView("Comment", items);
+        }
+        [HttpPost]
+        public ActionResult AddComment(int id, string name, string content)
+        {
+            comment newcmt = new comment();
+            newcmt.id = id;
+            newcmt.name = name;
+            newcmt.content = content;
+            newcmt.date = DateTime.Now;
+            myObj.comments.Add(newcmt);
+            myObj.SaveChanges();
+            return Json(new { status = true });
+        }
+        
     }
 }

@@ -21,10 +21,8 @@ namespace ThueXeMay.Models
         }
     
         public int id_bike { get; set; }
-        public string number { get; set; }
         public string name { get; set; }
         public string image { get; set; }
-        public string type { get; set; }
         public Nullable<int> price { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> id_type { get; set; }
@@ -36,7 +34,7 @@ namespace ThueXeMay.Models
         public string consume { get; set; }
         public string status { get; set; }
     
-        public virtual type type1 { get; set; }
+        public virtual type types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rent> rents { get; set; }
     }

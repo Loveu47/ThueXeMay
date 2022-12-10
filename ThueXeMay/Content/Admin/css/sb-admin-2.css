@@ -202,7 +202,9 @@ img {
   vertical-align: middle;
   border-style: none;
 }
-
+img.hidden {
+    display: none;
+}
 svg {
   overflow: hidden;
   vertical-align: middle;

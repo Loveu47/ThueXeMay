@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ThueXeMay.Models.bike
+@{
     ViewBag.Title = "Car_Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,17 +15,15 @@
         </div>
     </div>
 </section>
-@foreach (var item in Model)
-{
     <section class="ftco-section ftco-car-details">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="car-details">
-                        <div class="img rounded" style="background-image: url(@item.image);"></div>
+                        <div class="img rounded" style="background-image: url(@Model.image);"></div>
                         <div class="text text-center">
-                            <span class="subheading">@item.type</span>
-                            <h2>@item.name</h2>
+                            <span class="subheading">@Model.types.type1</span>
+                            <h2>@Model.name</h2>
                             <a href="" class="btn btn-primary py-2 mr-1">Thuê ngay</a>
                         </div>
                     </div>
@@ -41,7 +40,7 @@
                                 <div class="text">
                                     <h3 class="heading mb-0 pl-3">
                                         Khối lượng
-                                        <span>@item.mass Kg</span>
+                                        <span>@Model.mass Kg</span>
                                     </h3>
                                 </div>
                             </div>
@@ -58,7 +57,7 @@
                                 <div class="text">
                                     <h3 class="heading mb-0 pl-3">
                                         Dung tích
-                                        <span>@item.volumn lít</span>
+                                        <span>@Model.volumn lít</span>
                                     </h3>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@
                                 <div class="text">
                                     <h3 class="heading mb-0 pl-3">
                                         Kích thước
-                                        <span>@item.size cm</span>
+                                        <span>@Model.size cm</span>
                                     </h3>
                                 </div>
                             </div>
@@ -92,7 +91,7 @@
                                 <div class="text">
                                     <h3 class="heading mb-0 pl-3">
                                         Tiêu hao
-                                        <span>@item.consume mỗi 100km</span>
+                                        <span>@Model.consume mỗi 100km</span>
                                     </h3>
                                 </div>
                             </div>
@@ -109,7 +108,7 @@
                                 <div class="text">
                                     <h3 class="heading mb-0 pl-3">
                                         Tình trạng
-                                        <span>@item.status</span>
+                                        <span>@Model.status</span>
                                     </h3>
                                 </div>
                             </div>
@@ -129,7 +128,7 @@
                         </div>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                                <p>@item.describe</p>
+                                <p>@Model.describe</p>
                             </div>
                         </div>
                     </div>

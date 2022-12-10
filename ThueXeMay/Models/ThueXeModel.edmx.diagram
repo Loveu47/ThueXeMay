@@ -18,6 +18,8 @@
         <AssociationConnector Association="DB_ThueXeMay.FK_bike_type" ManuallyRouted="false" />
         <AssociationConnector Association="DB_ThueXeMay.fk_rent_bike" ManuallyRouted="false" />
         <AssociationConnector Association="DB_ThueXeMay.FK_rent_employee" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_ThueXeMay.comment" Width="1.5" PointX="10" PointY="7" />
+        <AssociationConnector Association="DB_ThueXeMay.FK_comment_blog" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,6 +14,12 @@ namespace ThueXeMay.Models
     
     public partial class blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public blog()
+        {
+            this.comments = new HashSet<comment>();
+        }
+    
         public int id { get; set; }
         public string title { get; set; }
         public string image { get; set; }
@@ -21,5 +27,8 @@ namespace ThueXeMay.Models
         public string content { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> date { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comment> comments { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
 {
     public class AuthController : Controller
     {
+        public employee acc;
         RENT_MOTOREntities myObj = new RENT_MOTOREntities();
         // GET: Admin/Auth
         public ActionResult Login()
@@ -30,7 +31,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
             }
             else
             {
-                employee acc = myObj.employees.SingleOrDefault(i => i.account == tendn && i.pass == mk);
+                acc = myObj.employees.SingleOrDefault(i => i.account == tendn && i.pass == mk);
                 if (acc != null)
                 {
                     Session["UserAdmin"] = acc;
