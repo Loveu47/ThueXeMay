@@ -14,13 +14,20 @@ namespace ThueXeMay.Models
     
     public partial class rent
     {
-        public int id_rent { get; set; }
-        public Nullable<int> id_bike { get; set; }
-        public Nullable<int> id_employee { get; set; }
-        public string date_start { get; set; }
-        public string status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public rent()
+        {
+            this.rentDetails = new HashSet<rentDetail>();
+        }
     
-        public virtual bike bike { get; set; }
-        public virtual employee employee { get; set; }
+        public int id_rent { get; set; }
+        public string note { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string mail { get; set; }
+        public string date_start { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rentDetail> rentDetails { get; set; }
     }
 }

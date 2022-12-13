@@ -24,7 +24,7 @@
                         <div class="text text-center">
                             <span class="subheading">@Model.types.type1</span>
                             <h2>@Model.name</h2>
-                            <a href="" class="btn btn-primary py-2 mr-1">Thuê ngay</a>
+                            <a href="@Url.Action("AddCart", "Cart", new {id = Model.id_bike})" class="btn btn-primary py-2 mr-1">Thêm vào giỏ</a>
                         </div>
                     </div>
                 </div>

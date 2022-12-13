@@ -145,10 +145,13 @@
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\bikesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\employeesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ratesController.cs" />
     <Compile Include="Areas\Admin\Controllers\typesController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PricingController.cs" />
@@ -165,6 +168,7 @@
     <Compile Include="Models\blog.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -187,15 +191,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThueXeModel.Designer.cs">
+    <Compile Include="Models\ModelThueXe.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ThueXeModel.edmx</DependentUpon>
+      <DependentUpon>ModelThueXe.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\rate.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rent.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rentDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -1927,6 +1934,7 @@
     <Content Include="Content\images\bg_1.jpg" />
     <Content Include="Content\images\bg_3.jpg" />
     <Content Include="Content\images\blog.jpg" />
+    <Content Include="Content\images\cart.png" />
     <Content Include="Content\images\loc.png" />
     <Content Include="Content\images\member\1.jpg" />
     <Content Include="Content\images\member\2.jpg" />
@@ -1961,12 +1969,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ThueXeModel.edmx</DependentUpon>
+      <DependentUpon>ModelThueXe.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ThueXeModel.edmx</DependentUpon>
+      <DependentUpon>ModelThueXe.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
@@ -2266,13 +2274,6 @@
     <Content Include="Content\Admin\scss\utilities\_rotate.scss" />
     <Content Include="Content\Admin\scss\utilities\_text.scss" />
     <Content Include="Areas\Admin\Views\Auth\Login.cshtml" />
-    <EntityDeploy Include="Models\ThueXeModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ThueXeModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ThueXeModel.edmx.diagram">
-      <DependentUpon>ThueXeModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\types\Create.cshtml" />
     <Content Include="Areas\Admin\Views\types\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\types\Index.cshtml" />
@@ -2281,6 +2282,27 @@
     <Content Include="Areas\Admin\Views\bikes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_Mail.cshtml" />
     <Content Include="Areas\Admin\Views\Home\AllMail.cshtml" />
+    <EntityDeploy Include="Models\ModelThueXe.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelThueXe.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelThueXe.edmx.diagram">
+      <DependentUpon>ModelThueXe.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Home\Mail.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\ContactAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\EditContact.cshtml" />
+    <Content Include="Areas\Admin\Views\rates\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\rates\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\rates\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\rates\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\rates\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2319,6 +2341,7 @@
     <Content Include="Views\Blog\Blog_other.cshtml" />
     <Content Include="Views\Cars\Detail.cshtml" />
     <Content Include="Views\Blog\Comment.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

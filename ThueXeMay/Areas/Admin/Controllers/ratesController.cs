@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,106 +10,108 @@ using ThueXeMay.Models;
 
 namespace ThueXeMay.Areas.Admin.Controllers
 {
-    public class typesController : BaseController
+    public class ratesController : BaseController
     {
         private RENT_MOTOREntities db = new RENT_MOTOREntities();
 
-        // GET: Admin/types
+        // GET: Admin/rates
         public ActionResult Index()
         {
-            return View(db.types.ToList());
+            return View(db.rates.ToList());
         }
 
-        // GET: Admin/types/Details/5
+        // GET: Admin/rates/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            rate rate = db.rates.Find(id);
+            if (rate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(rate);
+        }
 
-        // GET: Admin/types/Create
+        // GET: Admin/rates/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/types/Create
+        // POST: Admin/rates/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_type,type1,price_hour,price_day,price_month")] type type, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "id,name,job,content,IsActive,image")] rate rate)
         {
-            if (image != null && image.ContentLength > 0)
-            {
-                string _fn = Path.GetFileName(image.FileName);
-                string path = Path.Combine(Server.MapPath("/Content/images/"), _fn);
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                    image.SaveAs(path);
-                }
-                else
-                {
-                    image.SaveAs(path);
-                }
-                type.image = "/Content/images/" + _fn;
-            }
             if (ModelState.IsValid)
             {
-                db.types.Add(type);
+                db.rates.Add(rate);
                 db.SaveChanges();
-                ThongBao("Thêm thành công!!!", "success");
                 return RedirectToAction("Index");
             }
 
-            return View(type);
+            return View(rate);
         }
 
-        // GET: Admin/types/Edit/5
+        // GET: Admin/rates/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            type type = db.types.Find(id);
-            if (type == null)
+            rate rate = db.rates.Find(id);
+            if (rate == null)
             {
                 return HttpNotFound();
             }
-            return View(type);
+            return View(rate);
         }
 
-        // POST: Admin/types/Edit/5
+        // POST: Admin/rates/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_type,type1,price_hour,price_day,price_month,image")] type type)
+        public ActionResult Edit([Bind(Include = "id,name,job,content,IsActive,image")] rate rate)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(type).State = EntityState.Modified;
+                db.Entry(rate).State = EntityState.Modified;
                 db.SaveChanges();
-                ThongBao("Sửa thành công!!!", "success");
                 return RedirectToAction("Index");
             }
-            ThongBao("Sửa thất bại!!!", "error");
-            return View(type);
+            return View(rate);
         }
 
-        // POST: Admin/types/Delete/5
-
-        public ActionResult DeleteConfirmed(int? id)
+        // GET: Admin/rates/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            type type = db.types.Find(id);
-            if (type == null)
+            rate rate = db.rates.Find(id);
+            if (rate == null)
             {
                 return HttpNotFound();
             }
-            db.types.Remove(type);
+            return View(rate);
+        }
+
+        // POST: Admin/rates/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            rate rate = db.rates.Find(id);
+            db.rates.Remove(rate);
             db.SaveChanges();
-            ThongBao("Xoá thành công!!!", "success");
             return RedirectToAction("Index");
         }
 
@@ -122,6 +123,5 @@ namespace ThueXeMay.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
-       
     }
 }

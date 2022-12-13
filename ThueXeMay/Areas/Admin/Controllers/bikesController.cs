@@ -112,7 +112,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
             return View(bike);
         }
 
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             if (id == null)
             {

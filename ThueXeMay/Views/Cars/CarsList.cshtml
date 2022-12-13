@@ -11,7 +11,7 @@
                     <span class="cat">@item.types.type1</span>
                     <p class="price ml-auto">@item.price <span>/giờ</span></p>
                 </div>
-                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> @Html.ActionLink("Chi tiết", "Details", new { idx = item.id_bike }, new { @class = "btn btn-secondary py-2 ml-1" })</p>
+                <p class="d-flex mb-0 d-block"><a href="@Url.Action("AddCart", "Cart", new {id =  item.id_bike})" class="btn btn-primary py-2 mr-1">Thêm vào giỏ</a> @Html.ActionLink("Chi tiết", "Details", new { idx = item.id_bike }, new { @class = "btn btn-secondary py-2 ml-1" })</p>
             </div>
         </div>
     </div>

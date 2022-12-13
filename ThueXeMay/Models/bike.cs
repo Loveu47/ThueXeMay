@@ -17,7 +17,7 @@ namespace ThueXeMay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public bike()
         {
-            this.rents = new HashSet<rent>();
+            this.rentDetails = new HashSet<rentDetail>();
         }
     
         public int id_bike { get; set; }
@@ -36,6 +36,6 @@ namespace ThueXeMay.Models
     
         public virtual type types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rent> rents { get; set; }
+        public virtual ICollection<rentDetail> rentDetails { get; set; }
     }
 }

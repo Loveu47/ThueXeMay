@@ -12,12 +12,14 @@ namespace ThueXeMay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class employee
+    public partial class rentDetail
     {
-        public int id_employee { get; set; }
-        public string account { get; set; }
-        public string pass { get; set; }
-        public string name { get; set; }
-        public bool fulControl { get; set; }    
+        public int id { get; set; }
+        public int id_rent { get; set; }
+        public Nullable<int> id_bike { get; set; }
+        public Nullable<int> amount { get; set; }
+    
+        public virtual bike bike { get; set; }
+        public virtual rent rent { get; set; }
     }
 }
