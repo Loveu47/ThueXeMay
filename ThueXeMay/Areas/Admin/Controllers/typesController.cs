@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -82,12 +83,30 @@ namespace ThueXeMay.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_type,type1,price_hour,price_day,price_month,image")] type type)
+        public ActionResult Edit([Bind(Include = "id_type,type1,price_hour,price_day,price_month")] type type,HttpPostedFileBase image)
         {
+            if (image != null && image.ContentLength > 0)
+            {
+                string _fn = Path.GetFileName(image.FileName);
+                string path = Path.Combine(Server.MapPath("/Content/images/"), _fn);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                    image.SaveAs(path);
+                }
+                else
+                {
+                    image.SaveAs(path);
+                }
+                type.image = "/Content/images/" + _fn;
+            } else if (image == null)
+            {
+                type bikes = db.types.Where(i => i.id_type == type.id_type).FirstOrDefault();
+                type.image = bikes.image;
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(type).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Set<type>().AddOrUpdate(type); db.SaveChanges();
                 ThongBao("Sửa thành công!!!", "success");
                 return RedirectToAction("Index");
             }

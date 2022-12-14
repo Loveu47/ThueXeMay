@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -49,6 +50,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id_bike,name,price,IsActive,id_type,IsHot,describe,mass,volumn,size,consume,status")] bike bike, HttpPostedFileBase image)
         {
             if (image != null && image.ContentLength > 0)
@@ -99,11 +101,31 @@ namespace ThueXeMay.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_bike,name,image,price,IsActive,id_type,IsHot,describe,mass,volumn,size,consume,status")] bike bike)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "id_bike,name,price,IsActive,id_type,IsHot,describe,mass,volumn,size,consume,status")] bike bike, HttpPostedFileBase image)
         {
+            if (image != null && image.ContentLength > 0)
+            {
+                string _fn = Path.GetFileName(image.FileName);
+                string path = Path.Combine(Server.MapPath("/Content/images/xe/"), _fn);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                    image.SaveAs(path);
+                }
+                else
+                {
+                    image.SaveAs(path);
+                }
+                bike.image = "/Content/images/xe/" + _fn;
+            } else if (image == null)
+            {
+                bike bikes = db.bikes.Where(i=>i.id_bike == bike.id_bike).FirstOrDefault();
+                bike.image=bikes.image;
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(bike).State = EntityState.Modified;
+                db.Set<bike>().AddOrUpdate(bike); 
                 db.SaveChanges();
                 ThongBao("Sửa thành công!!!", "success");
                 return RedirectToAction("Index");

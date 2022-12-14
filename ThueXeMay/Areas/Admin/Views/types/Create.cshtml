@@ -73,23 +73,3 @@
 <div>
     @Html.ActionLink("Trở về", "Index")
 </div>
-
-@section scripts {
-    <script>
-
-        Image.onchange = evt => {
-
-            const [file] = Image.files;
-
-            if (file) {
-
-                preview.src = URL.createObjectURL(file);
-
-                $("#preview").removeClass("hidden");
-
-            }
-
-        }
-
-    </script>
-}

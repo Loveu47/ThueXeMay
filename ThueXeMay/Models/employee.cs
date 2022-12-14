@@ -18,6 +18,6 @@ namespace ThueXeMay.Models
         public string account { get; set; }
         public string pass { get; set; }
         public string name { get; set; }
-        public bool fulControl { get; set; }    
+        public Nullable<bool> fulControl { get; set; }
     }
 }

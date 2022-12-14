@@ -70,8 +70,8 @@
     <div class="form-group">
         <label class="control-label col-md-2">Mô tả</label>
         <div class="col-md-10">
-            <textarea class="form-control text-box single-line" id="describe" name="describe"></textarea>
-            @Html.ValidationMessageFor(model => model.describe, "", new { @class = "text-danger" })
+            @Html.TextAreaFor(model=>model.describe, new {@class= "form-control text-box single-line"})
+            
         </div>
     </div>
 
@@ -121,7 +121,6 @@
         <div class="col-md-10">
             <input type="file" name="Image" id="Image" required>
             <br />
-
         </div>
     </div>
 
@@ -141,3 +140,7 @@
 <div>
     @Html.ActionLink("Trở về", "Index")
 </div>
+
+@section scripts {
+    <script>CKEDITOR.replace('describe');</script>
+    }

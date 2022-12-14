@@ -20,6 +20,6 @@ namespace ThueXeMay.Models
         public string content { get; set; }
         public Nullable<System.DateTime> date { get; set; }
     
-        public virtual blog blog { get; set; }
+        public virtual blog blogs { get; set; }
     }
 }
