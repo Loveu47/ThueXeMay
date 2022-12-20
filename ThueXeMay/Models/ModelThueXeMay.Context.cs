@@ -37,5 +37,6 @@ namespace ThueXeMay.Models
         public virtual DbSet<rentDetail> rentDetails { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<type> types { get; set; }
+        public virtual DbSet<menu> menus { get; set; }
     }
 }

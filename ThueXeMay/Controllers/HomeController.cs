@@ -19,7 +19,11 @@ namespace ThueXeMay.Controllers
 
             return View();
         }
-
+        public ActionResult Menu()
+        {
+            var item = myObj.menus.Where(i => (bool)i.IsActive).OrderBy(j => j.order).ToList();
+            return PartialView("Menu", item);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

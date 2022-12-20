@@ -13,23 +13,19 @@ namespace ThueXeMay.Models
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    public partial class rate
+    public partial class menu
     {
         public int id { get; set; }
-        [DisplayName("Tên")]
+        [DisplayName("Tiêu đề")]
+        public string title { get; set; }
+        [DisplayName("Link")]
 
-        public string name { get; set; }
-        [DisplayName("Nghề nghiệp")]
-
-        public string job { get; set; }
-        [DisplayName("Nội dung")]
-
-        public string content { get; set; }
+        public string link { get; set; }
         [DisplayName("Hiển thị")]
 
         public Nullable<bool> IsActive { get; set; }
-        [DisplayName("Ảnh")]
+        [DisplayName("Thứ tự")]
 
-        public string image { get; set; }
+        public Nullable<int> order { get; set; }
     }
 }

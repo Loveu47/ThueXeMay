@@ -39,14 +39,7 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" id="1">
-                        <a href="~/Home" class="nav-link">TRANG CHỦ</a>
-                    </li>
-                    <li class="nav-item" id="2"><a href="~/About" class="nav-link">GIỚI THIỆU</a></li>
-                    <li class="nav-item" id="4"><a href="~/Cars" class="nav-link">XE</a></li>
-                    <li class="nav-item" id="5"><a href="~/Pricing" class="nav-link">GIÁ CẢ</a></li>
-                    <li class="nav-item" id="3"><a href="~/Blog" class="nav-link">BÀI VIẾT</a></li>
-                    <li class="nav-item" id="6"><a href="~/Contact" class="nav-link">LIÊN HỆ</a></li>
+                    @Html.Action("Menu","Home")
                 </ul>
             </div>
         </div>
@@ -65,7 +58,7 @@
                         <p>Đồng hành cùng bạn trên mọi cung đường và ở mọi thắng cảnh của miền đất Nghệ An.</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/profile.php?id=100088474176523"><span class="icon-facebook"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
                         </ul>
                     </div>

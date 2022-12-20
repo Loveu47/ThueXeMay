@@ -36,7 +36,7 @@ namespace ThueXeMay.Models
         [DisplayName("Hiển thị")]
 
         public Nullable<bool> IsActive { get; set; }
-        [DisplayName("Ngày")]
+        [DisplayName("Thời gian")]
 
         public Nullable<System.DateTime> date { get; set; }
     

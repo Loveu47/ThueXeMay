@@ -35,5 +35,10 @@ namespace ThueXeMay.Areas.Admin.Controllers
                 TempData["Type"] = "alert-danger";
             }
         }
+        public ActionResult TBao()
+        {
+            TempData["ThongBao"] = "Có thư mới bạn ơi !!!";
+            return Redirect("~/Admin/Home");
+        }
     }
 }

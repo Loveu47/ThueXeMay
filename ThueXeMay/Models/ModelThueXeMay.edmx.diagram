@@ -21,6 +21,7 @@
         <AssociationConnector Association="RENT_MOTORModel.FK_rentDetails_bike" ManuallyRouted="false" />
         <AssociationConnector Association="RENT_MOTORModel.FK_comment_blog" ManuallyRouted="false" />
         <AssociationConnector Association="RENT_MOTORModel.FK_rentDetails_rent" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RENT_MOTORModel.menu" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
