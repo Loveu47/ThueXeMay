@@ -15,6 +15,7 @@ namespace ThueXeMay.Models
     public partial class bill
     {
         public int id_bill { get; set; }
+        public int id_rent { get; set; }
         public Nullable<int> date_use { get; set; }
         public Nullable<int> hour_use { get; set; }
         public Nullable<int> money { get; set; }

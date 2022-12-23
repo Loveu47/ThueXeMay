@@ -17,7 +17,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
-               Các bài viết hiện tại
+                Các bài viết hiện tại
             </h6>
 
         </div>
@@ -29,7 +29,7 @@
                             <th>STT</th>
                             <th>Tiêu đề</th>
                             <th>Ảnh chính</th>
-                            <th>Thời gian</th>
+                            <th>Hiển thị</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                             <th>STT</th>
                             <th>Tiêu đề</th>
                             <th>Ảnh chính</th>
-                            <th>Thời gian</th>
+                            <th>Hiển thị</th>
                             <th>Chức năng</th>
                         </tr>
                     </tfoot>
@@ -55,7 +55,15 @@
                                     <img src="@Url.Content(item.image)" width="113px" height="75px" alt="Ảnh" />
                                 </td>
                                 <td>
-                                    @item.date.Value.ToString("dd/MM/yyyy")
+                                    @if (item.IsActive == true)
+                                    {
+                                        <a href="" data-id="@item.id" class="btn-custom btn btn-outline-success rounded-pill" id="fullControl"><i class="fas fa-check"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="" data-id="@item.id" class="btn-custom btn btn-outline-danger rounded-pill" id="fullControl"><i class="far fa-times-circle"></i></a>
+
+                                    }
                                 </td>
                                 <td>
                                     <a href="@Url.Action( "Edit", new { id = item.id })" class="btn btn-warning btn-icon-split">
@@ -85,7 +93,30 @@
 @section scripts{
     <script src="~/Content/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Content/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
     <script src="~/Content/Admin/js/demo/datatables-demo.js"></script>
+    <script src="~/Content/js/jquery-ui.js"></script>
+    <script src="~/Content/js/contact_custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btn-custom").off('click').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $.ajax({
+                    url: "/Admin/blogs/changeView",
+                    data: { id: id },
+                    type: "POST",
+                    success: function (data) {
+                        if (data.status) {
+                            window.location.reload();
+                        }
+                        else {
+                            window.location.reload();
+                        }
+                    }
+                });
+            })
+
+        })
+    </script>
+}
 }

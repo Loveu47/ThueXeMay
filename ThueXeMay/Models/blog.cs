@@ -11,8 +11,7 @@ namespace ThueXeMay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class blog
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,22 +21,11 @@ namespace ThueXeMay.Models
         }
     
         public int id { get; set; }
-        [DisplayName("Tiêu đề")]
         public string title { get; set; }
-        [DisplayName("Ảnh chính")]
-
         public string image { get; set; }
-        [DisplayName("Mở bài")]
-
         public string head { get; set; }
-        [DisplayName("Nội dung")]
-
         public string content { get; set; }
-        [DisplayName("Hiển thị")]
-
         public Nullable<bool> IsActive { get; set; }
-        [DisplayName("Thời gian")]
-
         public Nullable<System.DateTime> date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

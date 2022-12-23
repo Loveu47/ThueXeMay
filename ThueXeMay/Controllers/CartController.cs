@@ -18,7 +18,7 @@ namespace ThueXeMay.Controllers
             return View(giohang);
         }
 
-        public RedirectToRouteResult AddCart(int id)
+        public ActionResult AddCart(int id)
         {
             if (Session["giohang"] == null)
             {
@@ -49,9 +49,9 @@ namespace ThueXeMay.Controllers
                 CartItem cardItem = giohang.FirstOrDefault(m => m.id_xe == id);
                 cardItem.SoLuong++;
             }
-
+            return Redirect(url: Request.UrlReferrer.ToString());
             // Action này sẽ chuyển hướng về trang chi tiết sp khi khách hàng đặt vào giỏ thành công. Bạn có thể chuyển về chính trang khách hàng vừa đứng bằng lệnh return Redirect(Request.UrlReferrer.ToString()); nếu muốn.
-            return RedirectToAction("Details", "Cars", new { idx = id });
+            //return RedirectToAction("Details", "Cars", new { idx = id });
         }
         public RedirectToRouteResult SuaSoLuong(int SanPhamID, int soluongmoi)
         {
@@ -76,5 +76,45 @@ namespace ThueXeMay.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Checkout(FormCollection frm)
+        {
+            //try
+            //{
+                List<CartItem> carts = (List<CartItem>)Session["giohang"];
+                rent rent = new rent()
+                {
+                    name = frm["inputUsername"],
+                    phone = frm["inputPhone"],
+                    mail = frm["inputEmail"],
+                    note = frm["inputNote"],
+                    date = DateTime.Now,
+                };
+                myObj.rents.Add(rent);
+                myObj.SaveChanges();
+
+                foreach (CartItem item in carts)
+                {
+                    rentDetail rentDetail = new rentDetail()
+                    {
+                        id_rent = rent.id_rent,
+                        id_bike = item.id_xe,
+                        amount = item.SoLuong,
+                    };
+                    myObj.rentDetails.Add(rentDetail);
+                    myObj.SaveChanges();
+                }
+
+                Session.Remove("giohang");
+                return View("RentSuccess");
+            //} catch
+            //{
+            //    return View("Error");
+            //}
+        }
     }
 }

@@ -21,8 +21,23 @@ namespace ThueXeMay.Areas.Admin.Controllers
         {
             return View(db.blogs.ToList());
         }
-
-
+        [HttpPost]
+        public ActionResult changeView(int? id)
+        {
+            blog blog = db.blogs.Find(id);
+            if (blog.IsActive == true)
+            {
+                blog.IsActive = false;
+            } else
+            {
+                blog.IsActive = true;
+            }
+            db.SaveChanges();
+            return Json(new
+            {
+                status = blog.IsActive
+            });
+        }
         // GET: Admin/blogs/Create
         public ActionResult Create()
         {

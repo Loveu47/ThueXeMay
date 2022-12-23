@@ -32,11 +32,11 @@ namespace ThueXeMay.Models
         public virtual DbSet<contact> contacts { get; set; }
         public virtual DbSet<employee> employees { get; set; }
         public virtual DbSet<mail> mails { get; set; }
+        public virtual DbSet<menu> menus { get; set; }
         public virtual DbSet<rate> rates { get; set; }
         public virtual DbSet<rent> rents { get; set; }
         public virtual DbSet<rentDetail> rentDetails { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<type> types { get; set; }
-        public virtual DbSet<menu> menus { get; set; }
     }
 }

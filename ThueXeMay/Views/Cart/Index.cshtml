@@ -25,7 +25,7 @@
 <body>
     @if (Model == null || Model.Count == 0)
     {
-        <h2 class="text-light text-center">
+        <h2 class="text-light text-center" style="padding-top:50px">
             Giỏ hàng của bạn đang rỗng!
         </h2>
     }
@@ -123,9 +123,9 @@
                                     </li>
                                 </ul>
 
-                                <button type="button" class="btn btn-primary btn-lg btn-block">
-                                    Xác Nhận
-                                </button>
+                                <a class="btn btn-primary"  href="@Url.Action("Checkout","Cart")">
+                                    Xác nhận
+                                </a>
                             </div>
                         </div>
                     </div>

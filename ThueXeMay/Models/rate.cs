@@ -11,25 +11,14 @@ namespace ThueXeMay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class rate
     {
         public int id { get; set; }
-        [DisplayName("Tên")]
-
         public string name { get; set; }
-        [DisplayName("Nghề nghiệp")]
-
         public string job { get; set; }
-        [DisplayName("Nội dung")]
-
         public string content { get; set; }
-        [DisplayName("Hiển thị")]
-
         public Nullable<bool> IsActive { get; set; }
-        [DisplayName("Ảnh")]
-
         public string image { get; set; }
     }
 }

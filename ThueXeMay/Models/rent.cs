@@ -25,7 +25,7 @@ namespace ThueXeMay.Models
         public string name { get; set; }
         public string phone { get; set; }
         public string mail { get; set; }
-        public string date_start { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rentDetail> rentDetails { get; set; }

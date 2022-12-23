@@ -112,7 +112,17 @@ namespace ThueXeMay.Areas.Admin.Controllers
             ThongBao("Xoá thành công!!!", "success");
             return RedirectToAction("Index");
         }
-
+        [HttpPost]
+        public ActionResult changeView(int? id)
+        {
+            menu menu = db.menus.Find(id);
+            menu.IsActive = !menu.IsActive;
+            db.SaveChanges();
+            return Json(new
+            {
+                status = menu.IsActive
+            });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
