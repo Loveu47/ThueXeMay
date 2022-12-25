@@ -47,5 +47,6 @@ namespace ThueXeMay.Areas.Admin.Controllers
             Session["UserAdmin"] = "";
             return Redirect("~/Admin/Login");
         }
+        
     }
 }

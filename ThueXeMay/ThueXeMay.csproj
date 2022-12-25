@@ -149,6 +149,7 @@
     <Compile Include="Areas\Admin\Controllers\employeesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\menusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\rentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\typesController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
@@ -220,7 +221,9 @@
   <ItemGroup>
     <Content Include="Content\Admin\css\sb-admin-2.css" />
     <Content Include="Content\Admin\css\sb-admin-2.min.css" />
+    <Content Include="Content\Admin\css\styles.css" />
     <Content Include="Content\Admin\images\admin.png" />
+    <Content Include="Content\Admin\images\statistics.svg" />
     <Content Include="Content\Admin\img\undraw_posting_photo.svg" />
     <Content Include="Content\Admin\img\undraw_profile.svg" />
     <Content Include="Content\Admin\img\undraw_profile_1.svg" />
@@ -1935,6 +1938,7 @@
     <Content Include="Content\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Content\images\about.jpg" />
     <Content Include="Content\images\admin.png" />
+    <Content Include="Content\images\avt.png" />
     <Content Include="Content\images\bg_1.jpg" />
     <Content Include="Content\images\bg_3.jpg" />
     <Content Include="Content\images\blog.jpg" />
@@ -2306,6 +2310,13 @@
     <Content Include="Models\ModelDBThueXeMay.edmx.diagram">
       <DependentUpon>ModelDBThueXeMay.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\employees\Rename.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\AdminName.cshtml" />
+    <Content Include="Areas\Admin\Views\employees\ChangePsw.cshtml" />
+    <Content Include="Areas\Admin\Views\rents\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\rents\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\rents\rentsDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

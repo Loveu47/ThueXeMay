@@ -87,6 +87,81 @@ namespace ThueXeMay.Areas.Admin.Controllers
             });
 
         }
+
+        public ActionResult rename(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            employee nv = db.employees.Find(id);
+            if(nv == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Rename",nv);
+        }
+        [HttpPost]
+        public ActionResult rename(int? id, string namenew)
+        {   try
+            {
+                employee nv = db.employees.Find(id);
+                nv.name = namenew;
+                db.SaveChanges();
+                ThongBao("Đổi tên thành công :v", "success");
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+        public ActionResult AdminName()
+        {
+            var admin = Session["UserAdmin"] as ThueXeMay.Models.employee;
+            int id = admin.id_employee;
+            var item = db.employees.Find(id);
+            return PartialView("AdminName",item);
+        }
+
+        public ActionResult ChangePsw(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            employee nv = db.employees.Find(id);
+            if (nv == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nv);
+        }
+        [HttpPost]
+        public ActionResult ChangePsw(int? id, string pswOld, string pswNew)
+        {
+            try
+            {
+                employee nv = db.employees.Find(id);
+                if (nv.pass == pswOld)
+                {
+                    nv.pass = pswNew;
+                    db.SaveChanges();
+                    ThongBao("Đổi mật khẩu thành công :v", "success");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ThongBao("Mật khẩu hiện tại chưa chính xác :v", "error");
+                    return RedirectToAction("ChangePsw", new {id=id});
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+            
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

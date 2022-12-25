@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using ThueXeMay.Models;
@@ -14,11 +16,25 @@ namespace ThueXeMay.Areas.Admin.Controllers
     public class HomeController : BaseController
     {
         RENT_MOTOREntities myObj = new RENT_MOTOREntities();
-
         // GET: Admin/Home
-        public ActionResult Index()
+        public class ch
         {
-            return View();
+            public int country;
+            public int value;
+        }
+        public ActionResult Index()
+        {   
+            TempData["CountBikes"] = myObj.bikes.Count();
+            TempData["CountBlogs"] = myObj.blogs.Count();
+            TempData["CountMails"] = myObj.mails.Count();
+            TempData["CountRents"] = myObj.rents.Count();
+            var mo = DateTime.Now.Month;
+            var item = from i in myObj.rents where i.date.Value.Month == mo group i.id_rent by i.date.Value.Day  into h select new ch()
+            {
+                country = h.Key,
+                value = h.Count(),
+            };
+            return View(item);
         }
         public ActionResult Mail()
         {
