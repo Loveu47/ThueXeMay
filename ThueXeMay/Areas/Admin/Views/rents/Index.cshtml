@@ -75,12 +75,26 @@
                                         </span>
                                         <span class="text">Chi tiết</span>
                                     </a>
-                                    <a href="@Url.Action("DeleteConfirmed","rents", new { id = item.id_rent })" onclick="return confirm('Bạn có chắc chắn muốn xoá?');" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Xoá</span>
-                                    </a>
+                                    @if (item.bills.Where(j => j.id_rent == item.id_rent).Count() == 0)
+                                    {
+                                        <a href="@Url.Action("DeleteConfirmed","rents", new { id = item.id_rent })" onclick="return confirm('Bạn có chắc chắn muốn xoá?');" class="btn btn-danger btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Xoá</span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        if (item.bills.Where(j => j.id_rent == item.id_rent).Select(j => j.date_end).Single() == null)
+                                        {
+                                            <span class="badge badge-secondary">Đang thuê</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-success">Đã hoàn thành</span>
+                                        }
+                                    }
                                 </td>
                             </tr>
                             i++;

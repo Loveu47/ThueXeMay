@@ -29,9 +29,7 @@
           </Key>
           <Property Name="id_bill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_rent" Type="int" Nullable="false" />
-          <Property Name="date_use" Type="int" />
-          <Property Name="hour_use" Type="int" />
-          <Property Name="money" Type="int" />
+          <Property Name="money_hour" Type="int" />
           <Property Name="date_start" Type="datetime" />
           <Property Name="date_end" Type="datetime" />
           <Property Name="status" Type="nvarchar" MaxLength="50" />
@@ -164,6 +162,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_bill_rent">
+          <End Role="rent" Type="Self.rent" Multiplicity="1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rent">
+              <PropertyRef Name="id_rent" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_rent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_comment_blog">
           <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
           <End Role="comment" Type="Self.comment" Multiplicity="*" />
@@ -218,6 +228,10 @@
             <End Role="type" EntitySet="type" />
             <End Role="bike" EntitySet="bike" />
           </AssociationSet>
+          <AssociationSet Name="FK_bill_rent" Association="Self.FK_bill_rent">
+            <End Role="rent" EntitySet="rent" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
           <AssociationSet Name="FK_comment_blog" Association="Self.FK_comment_blog">
             <End Role="blog" EntitySet="blog" />
             <End Role="comment" EntitySet="comment" />
@@ -261,12 +275,11 @@
           </Key>
           <Property Name="id_bill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_rent" Type="Int32" Nullable="false" />
-          <Property Name="date_use" Type="Int32" />
-          <Property Name="hour_use" Type="Int32" />
-          <Property Name="money" Type="Int32" />
+          <Property Name="money_hour" Type="Int32" />
           <Property Name="date_start" Type="DateTime" Precision="3" />
           <Property Name="date_end" Type="DateTime" Precision="3" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="rent" Relationship="Self.FK_bill_rent" FromRole="bill" ToRole="rent" />
         </EntityType>
         <EntityType Name="blog">
           <Key>
@@ -355,13 +368,14 @@
           <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bills" Relationship="Self.FK_bill_rent" FromRole="rent" ToRole="bill" />
           <NavigationProperty Name="rentDetails" Relationship="Self.FK_rentDetails_rent" FromRole="rent" ToRole="rentDetails" />
         </EntityType>
         <EntityType Name="rentDetail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_rent" Type="Int32" Nullable="false" />
           <Property Name="id_bike" Type="Int32" />
           <Property Name="amount" Type="Int32" />
@@ -414,6 +428,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_bill_rent">
+          <End Role="rent" Type="Self.rent" Multiplicity="1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rent">
+              <PropertyRef Name="id_rent" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="id_rent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_comment_blog">
           <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
           <End Role="comment" Type="Self.comment" Multiplicity="*" />
@@ -460,6 +486,10 @@
             <End Role="bike" EntitySet="bikes" />
             <End Role="rentDetails" EntitySet="rentDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_bill_rent" Association="Self.FK_bill_rent">
+            <End Role="rent" EntitySet="rents" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
           <AssociationSet Name="FK_comment_blog" Association="Self.FK_comment_blog">
             <End Role="blog" EntitySet="blogs" />
             <End Role="comment" EntitySet="comments" />
@@ -499,9 +529,7 @@
               <MappingFragment StoreEntitySet="bill">
                 <ScalarProperty Name="id_bill" ColumnName="id_bill" />
                 <ScalarProperty Name="id_rent" ColumnName="id_rent" />
-                <ScalarProperty Name="date_use" ColumnName="date_use" />
-                <ScalarProperty Name="hour_use" ColumnName="hour_use" />
-                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="money_hour" ColumnName="money_hour" />
                 <ScalarProperty Name="date_start" ColumnName="date_start" />
                 <ScalarProperty Name="date_end" ColumnName="date_end" />
                 <ScalarProperty Name="status" ColumnName="status" />

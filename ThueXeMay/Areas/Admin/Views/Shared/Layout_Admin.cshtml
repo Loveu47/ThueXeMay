@@ -13,6 +13,7 @@
     <meta name="author" content="">
 
     <title>Admin</title>
+
     <link href="~/Content/css/css_out.css" rel="stylesheet" />
     <!-- Custom fonts for this template-->
     <link href="~/Content/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -114,15 +115,15 @@
                     <span>Liên lạc</span>
                 </a>
             </li>
-                @if (admin.fulControl == true)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Employees")">
-                            <i class="fas fa-users"></i>
-                            <span>Nhân viên</span>
-                        </a>
-                    </li>
-                  }
+            @if (admin.fulControl == true)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Employees")">
+                        <i class="fas fa-users"></i>
+                        <span>Nhân viên</span>
+                    </a>
+                </li>
+            }
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -178,7 +179,6 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             @{ Html.RenderAction("Mail", "Home");}
@@ -187,7 +187,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        @Html.Action("AdminName","employees")
+                        @Html.Action("AdminName", "employees")
                     </ul>
 
                 </nav>
@@ -211,7 +211,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; ThueXeMay 2022</span>
                     </div>
                 </div>
             </footer>
@@ -250,13 +250,13 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/Content/Admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="~/Content/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="~/Content/Admin/js/sb-admin-2.min.js"></script>
-    <script src="~/Content/Admin/ckfinder/ckfinder.js"></script>
     <script src="~/Content/Admin/ckeditor/ckeditor.js"></script>
     <!-- Page level plugins -->
     <script src="~/Content/Admin/vendor/chart.js/Chart.min.js"></script>

@@ -32,8 +32,7 @@
                     tongall += tong;
                     i++;
                 }
-
-                <!-- Invoice total-->
+                <!-- Invoice total-->@{TempData["tong"] = tongall;}
                 <tr>
                     <td class="text-end pb-0" colspan="3"><div class="text-uppercase small fw-700 text-muted">Tổng / giờ:</div></td>
                     <td class="text-end pb-0"><div class="h5 mb-0 fw-700 text-green">@tongall.ToString("#,##0").Replace(',', '.')<small>VNĐ</small></div></td>

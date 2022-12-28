@@ -17,6 +17,7 @@ namespace ThueXeMay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public rent()
         {
+            this.bills = new HashSet<bill>();
             this.rentDetails = new HashSet<rentDetail>();
         }
     
@@ -27,6 +28,8 @@ namespace ThueXeMay.Models
         public string mail { get; set; }
         public Nullable<System.DateTime> date { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bill> bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rentDetail> rentDetails { get; set; }
     }

@@ -39,6 +39,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
             {
                 db.employees.Add(employee);
                 db.SaveChanges();
+                ThongBao("Thêm thành công!!!", "success");
                 return RedirectToAction("Index");
             }
 

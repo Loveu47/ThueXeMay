@@ -17,7 +17,8 @@ namespace ThueXeMay.Areas.Admin.Controllers
         // GET: Admin/rents
         public ActionResult Index()
         {
-            return View(db.rents.OrderByDescending(j=>j.id_rent).ToList());
+            var item = db.rents.Include(i => i.bills);
+            return View(item.OrderByDescending(j => j.id_rent).ToList());
         }
         // GET: Admin/rents/Details/5
         public ActionResult Details(int? id)
@@ -37,7 +38,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
         {
             var bike = db.rentDetails.Include(j => j.bike);
             bike = bike.Where(i => i.id_rent == id);
-            return PartialView("rentsDetail",bike.ToList());
+            return PartialView("rentsDetail", bike.ToList());
         }
         public ActionResult DeleteConfirmed(int? id)
         {
@@ -50,18 +51,77 @@ namespace ThueXeMay.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            List<rentDetail> rentDetail = (List<rentDetail>)db.rentDetails.Where(j => j.id_rent == id).ToList();
+            foreach (var item in rentDetail)
+            {
+                db.rentDetails.Remove(item);
+            }
             db.rents.Remove(rent);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
+        [HttpPost]
+        public ActionResult rent_start(int? id)
         {
-            if (disposing)
+            if (id == null)
             {
-                db.Dispose();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            base.Dispose(disposing);
+            var check = db.bills.Where(i => i.id_rent == id).ToList();
+            if (check.Count() != 0)
+            {
+                return Json(new { status = false });
+            }
+            else
+            {
+                bill bill = new bill()
+                {
+                    id_rent = (int)id,
+                    date_start = DateTime.Now,
+                };
+                db.bills.Add(bill);
+                db.SaveChanges();
+                return Json(new { status = true });
+            }
         }
+
+        public ActionResult rent_end(int? id)
+        {
+            var idx = db.bills.Where(i => i.id_rent == id).Select(j => j.id_bill).First();
+            bill bill = db.bills.Find(idx);
+            if (bill == null)
+            {
+                return HttpNotFound();
+            }
+            if (bill.date_end == null)
+            {
+                bill.date_end = DateTime.Now;
+                bill.money_hour = (int)TempData["tong"];
+                bill.status = "Hoàn thành";
+                db.SaveChanges();
+                return RedirectToAction("Index", "rents");
+            }
+            else
+            {
+                ThongBao("Đơn đã hoàn thành!!", "error");
+                return Redirect(url: Request.UrlReferrer.ToString());
+            }
+        }
+
+    
+    public ActionResult ViewBill(int? id)
+    {  
+        var idx = db.bills.Where(i => i.id_rent == id).Select(j => j.id_bill).First();
+        bill bill = db.bills.Find(idx);
+        return PartialView("Bill", bill);
     }
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            db.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+}
 }

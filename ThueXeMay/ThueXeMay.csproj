@@ -162,59 +162,59 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\bike.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bill.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\comment.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\contact.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\employee.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mail.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\menu.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelDBThueXeMay.Context.cs">
+    <Compile Include="Models\ModelThueXeMay.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBThueXeMay.Context.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelDBThueXeMay.cs">
+    <Compile Include="Models\ModelThueXeMay.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelDBThueXeMay.Designer.cs">
+    <Compile Include="Models\ModelThueXeMay.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDBThueXeMay.edmx</DependentUpon>
+      <DependentUpon>ModelThueXeMay.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\rate.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rent.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rentDetail.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\type.cs">
-      <DependentUpon>ModelDBThueXeMay.tt</DependentUpon>
+      <DependentUpon>ModelThueXeMay.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1975,15 +1975,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ModelDBThueXeMay.Context.tt">
+    <Content Include="Models\ModelThueXeMay.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDBThueXeMay.edmx</DependentUpon>
-      <LastGenOutput>ModelDBThueXeMay.Context.cs</LastGenOutput>
+      <DependentUpon>ModelThueXeMay.edmx</DependentUpon>
+      <LastGenOutput>ModelThueXeMay.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelDBThueXeMay.tt">
+    <Content Include="Models\ModelThueXeMay.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDBThueXeMay.edmx</DependentUpon>
-      <LastGenOutput>ModelDBThueXeMay.cs</LastGenOutput>
+      <DependentUpon>ModelThueXeMay.edmx</DependentUpon>
+      <LastGenOutput>ModelThueXeMay.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2292,7 +2292,6 @@
     <Content Include="Areas\Admin\Views\Home\AllMail.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Mail.cshtml" />
     <Content Include="Areas\Admin\Views\Home\ContactAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\View.cshtml" />
     <Content Include="Areas\Admin\Views\Home\EditContact.cshtml" />
     <Content Include="Areas\Admin\Views\blogs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\blogs\Edit.cshtml" />
@@ -2303,13 +2302,6 @@
     <Content Include="Areas\Admin\Views\menus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\employees\Create.cshtml" />
     <Content Include="Areas\Admin\Views\employees\Index.cshtml" />
-    <EntityDeploy Include="Models\ModelDBThueXeMay.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDBThueXeMay.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelDBThueXeMay.edmx.diagram">
-      <DependentUpon>ModelDBThueXeMay.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\employees\Rename.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\employees\AdminName.cshtml" />
@@ -2317,6 +2309,14 @@
     <Content Include="Areas\Admin\Views\rents\Details.cshtml" />
     <Content Include="Areas\Admin\Views\rents\Index.cshtml" />
     <Content Include="Areas\Admin\Views\rents\rentsDetail.cshtml" />
+    <EntityDeploy Include="Models\ModelThueXeMay.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelThueXeMay.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelThueXeMay.edmx.diagram">
+      <DependentUpon>ModelThueXeMay.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\rents\Bill.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2357,6 +2357,8 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\RentSuccess.cshtml" />
+    <Content Include="Views\Shared\ĐK_DV.cshtml" />
+    <Content Include="Views\Shared\FAQs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

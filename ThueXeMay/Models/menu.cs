@@ -17,7 +17,6 @@ namespace ThueXeMay.Models
     {
         public int id { get; set; }
         [DisplayName("Tiêu đề")]
-
         public string title { get; set; }
         [DisplayName("Đường dẫn")]
 
