@@ -1936,13 +1936,11 @@
     <Content Include="Content\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Content\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Content\fonts\open-iconic\open-iconic.svg" />
-    <Content Include="Content\images\about.jpg" />
     <Content Include="Content\images\admin.png" />
     <Content Include="Content\images\avt.png" />
     <Content Include="Content\images\bg_1.jpg" />
     <Content Include="Content\images\bg_3.jpg" />
     <Content Include="Content\images\blog.jpg" />
-    <Content Include="Content\images\cart.png" />
     <Content Include="Content\images\loc.png" />
     <Content Include="Content\images\member\1.jpg" />
     <Content Include="Content\images\member\2.jpg" />
