@@ -2,11 +2,12 @@
 
 @if (Model.status != null)
 {
-     var item = (TimeSpan)(Model.date_end - Model.date_start);
-        var day = item.Days;
-        var hour = item.Hours;
-        var tong = (day * 10 + hour) * Model.money_hour;
-    
+    var item = (TimeSpan)(Model.date_end - Model.date_start);
+    var day = item.Days;
+    var hour = item.Hours;
+    var tong = (day * 10 + hour) * Model.money_hour;
+
+
     <div class="col-xxl-6 col-xl-8">
         <br /><br />
         <h3 class="text-primary">Hoá đơn đơn thuê</h3>
@@ -32,11 +33,11 @@
         </div>
         <div class="row ">
             <div class="col text-black-75"><i>Giá / giờ:</i></div>
-            <div class="col text-red" style="font-size:20px">@Model.money_hour<small>VNĐ</small></div>
+            <div class="col text-red" style="font-size:20px">@Model.money_hour.ToString("#,##0").Replace(',', '.')<small>VNĐ</small></div>
         </div>
         <div class="row ">
             <div class="col text-black-75"><i>Tổng tiền:</i></div>
-            <div class="col text-red" style="font-size:20px">@tong<small>VNĐ</small></div>
+            <div class="col text-red" style="font-size:20px">@tong.ToString("#,##0").Replace(',', '.')<small>VNĐ</small></div>
         </div>
         <hr class="my-4"><br /><br />
     </div>

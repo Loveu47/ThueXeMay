@@ -57,6 +57,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
                 db.rentDetails.Remove(item);
             }
             db.rents.Remove(rent);
+            ThongBao("Xoá thành công!!", "success");
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -78,6 +79,7 @@ namespace ThueXeMay.Areas.Admin.Controllers
                 {
                     id_rent = (int)id,
                     date_start = DateTime.Now,
+                    money_hour = (int)TempData["tong"],
                 };
                 db.bills.Add(bill);
                 db.SaveChanges();
@@ -96,10 +98,10 @@ namespace ThueXeMay.Areas.Admin.Controllers
             if (bill.date_end == null)
             {
                 bill.date_end = DateTime.Now;
-                bill.money_hour = (int)TempData["tong"];
                 bill.status = "Hoàn thành";
                 db.SaveChanges();
-                return RedirectToAction("Index", "rents");
+                ThongBao("Hoàn thành đơn thành công!!!", "success");
+                return Redirect(url: Request.UrlReferrer.ToString());
             }
             else
             {

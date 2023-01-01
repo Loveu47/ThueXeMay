@@ -16,7 +16,7 @@ namespace ThueXeMay.Models
     {
         public int id_bill { get; set; }
         public int id_rent { get; set; }
-        public Nullable<int> money_hour { get; set; }
+        public int money_hour { get; set; }
         public Nullable<System.DateTime> date_start { get; set; }
         public Nullable<System.DateTime> date_end { get; set; }
         public string status { get; set; }
