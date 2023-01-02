@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Đức Tài :v
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,7 +33,7 @@ namespace ThueXeMay.Controllers
         }
         public ActionResult DkDv()
         {
-            return View("ĐK_DV");
+            return View("DK_DV");
         }
         public ActionResult faqs()
         {
