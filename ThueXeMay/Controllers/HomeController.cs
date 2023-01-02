@@ -32,7 +32,7 @@ namespace ThueXeMay.Controllers
         }
         public ActionResult DkDv()
         {
-            return View("ĐK_DV");
+            return View("DK_DV");
         }
         public ActionResult faqs()
         {
